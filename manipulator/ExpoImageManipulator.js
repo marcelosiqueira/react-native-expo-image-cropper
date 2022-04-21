@@ -8,7 +8,7 @@ import {
     Text,
     SafeAreaView,
     TouchableOpacity,
-    YellowBox
+    LogBox
 } from 'react-native'
 import * as ImageManipulator from 'expo-image-manipulator'
 import * as FileSystem from 'expo-file-system'
@@ -20,8 +20,8 @@ import ImageCropOverlay from '../manipulator/ImageCropOverlay'
 
 const { width, height } = Dimensions.get('window')
 
-YellowBox.ignoreWarnings(['componentWillReceiveProps', 'componentWillUpdate', 'componentWillMount']);
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs(['componentWillReceiveProps', 'componentWillUpdate', 'componentWillMount']);
+LogBox.ignoreLogs([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
     'Module RCTImageLoader requires',
@@ -270,7 +270,7 @@ class ExpoImageManipulator extends Component {
 
         // this.setState(curHeight)
     }
-    
+
     render() {
         const {
             isVisible,
@@ -347,20 +347,20 @@ class ExpoImageManipulator extends Component {
                                             <Image source={require('../assets/flip-horizontal.png')} style={{width: 24, height: 24}}></Image>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => {onPictureChoosed({ uri, base64 }); this.onToggleModal()}} style={{marginLeft: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
-                                            <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{'DONE'}</Text>                                
+                                            <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{'DONE'}</Text>
                                         </TouchableOpacity>
                                     </View>
-                                </View> : 
+                                </View> :
                                 <View style={{flexDirection: 'row'}}>
                                     <TouchableOpacity onPress={() => this.setState({cropMode: false})} style={{width: 32, height: 32, alignItems: 'center', justifyContent: 'center'}}>
                                         <Icon size={24} name={'arrow-left'} color="white" />
                                     </TouchableOpacity>
-                                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>                                    
+                                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
                                         <TouchableOpacity onPress={() => this.onCropImage()} style={{marginRight: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
-                                            <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{processing ? 'Processing' : 'CROP'}</Text>                                
+                                            <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{processing ? 'Processing' : 'CROP'}</Text>
                                         </TouchableOpacity>
                                     </View>
-                                </View>                            
+                                </View>
                             }
                         </ScrollView>
                     </SafeAreaView>
